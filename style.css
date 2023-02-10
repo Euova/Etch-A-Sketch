@@ -1,0 +1,20 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.grid_container{
+    display: inline-grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    min-width: 960px;
+    min-height: 960px;
+}
+.grid_square{
+    border: 2px solid black;
+}
+button{
+    padding: 30px;
+}
