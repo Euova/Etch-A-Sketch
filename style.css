@@ -17,3 +17,8 @@ body{
 button{
     padding: 30px;
 }
+.color_picker{
+    width: 75px;
+    height: 75px;
+    border: none;
+}

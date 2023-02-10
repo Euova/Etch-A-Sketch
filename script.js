@@ -1,10 +1,11 @@
 const container = document.querySelector(".grid_container");
-const blackButton = document.querySelector(".drawing_black");
+const colorButton = document.querySelector(".drawing_color");
 const eraserButton = document.querySelector(".eraser");
 const rainbowButton = document.querySelector(".rainbow");
 const clearButton = document.querySelector(".clear");
 let sizeDisplay = document.querySelector(".size");
 let slider = document.querySelector(".slider");
+let color = document.querySelector(".color_picker");
 let allSquares = 0;
 let squares = slider.value;
 
@@ -29,7 +30,7 @@ function resetGrid(){
 
 function drawingBlack(allSquares){
     let draw = function(e){
-        e.target.style.background = "black";
+        e.target.style.background = `${color.value}`;
     };
 
     allSquares.forEach(box => box.addEventListener('mousedown', function(e){
@@ -77,7 +78,7 @@ function clearDrawing(allSquares){
 }
 
 
-blackButton.addEventListener('click', function(){
+colorButton.addEventListener('click', function(){
     drawingBlack(allSquares);
 });
 
