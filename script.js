@@ -3,7 +3,7 @@ const squareNumberSelector = document.querySelector(".num_squares");
 const blackButton = document.querySelector(".drawing_black");
 const eraserButton = document.querySelector(".eraser");
 const rainbowButton = document.querySelector(".rainbow");
-
+const clearButton = document.querySelector(".clear");
 let allSquares = 0;
 let squares = 16;
 
@@ -70,8 +70,9 @@ function drawingRainbow(allSquares){
     }));
 }
 
-
-
+function clearDrawing(allSquares){
+    allSquares.forEach(box => box.style.background = "white");
+}
 blackButton.addEventListener('click', function(){
     drawingBlack(allSquares);
 });
@@ -84,8 +85,9 @@ rainbowButton.addEventListener('click', function(){
     drawingRainbow(allSquares);
 });
 
-
-
+clearButton.addEventListener('click', function(){
+    clearDrawing(allSquares);
+});
 squareNumberSelector.addEventListener('click', function(){
     squares = prompt("Squares Per Side: ");
     if (squares > 100){
