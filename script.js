@@ -2,6 +2,8 @@ const container = document.querySelector(".grid_container");
 const squareNumberSelector = document.querySelector(".num_squares");
 const blackButton = document.querySelector(".drawing_black");
 const eraserButton = document.querySelector(".eraser");
+const rainbowButton = document.querySelector(".rainbow");
+
 let allSquares = 0;
 let squares = 16;
 
@@ -24,9 +26,6 @@ function resetGrid(){
 }
 
 function drawingBlack(allSquares){
-    // allSquares.forEach(box => box.addEventListener('mouseover', function(e){
-    //     e.target.style.background = "black";
-    // }));
     let draw = function(e){
         e.target.style.background = "black";
     };
@@ -54,6 +53,23 @@ function erasing(allSquares){
     }));
 }
 
+function drawingRainbow(allSquares){
+    let rainbow = function(e){
+        let red = Math.floor(Math.random() * 256);
+        let blue = Math.floor(Math.random() * 256);
+        let green = Math.floor(Math.random() * 256);
+        e.target.style.background = `rgb(${red},${blue},${green})`;
+    }
+
+    allSquares.forEach(box => box.addEventListener('mousedown',function(){
+        allSquares.forEach(box => box.addEventListener('mouseenter', rainbow));
+    }));
+
+    allSquares.forEach(box => box.addEventListener('mouseup', function(){
+        allSquares.forEach(box => box.removeEventListener('mouseenter', rainbow));
+    }));
+}
+
 
 
 blackButton.addEventListener('click', function(){
@@ -63,6 +79,12 @@ blackButton.addEventListener('click', function(){
 eraserButton.addEventListener('click', function(){
     erasing(allSquares);
 });
+
+rainbowButton.addEventListener('click', function(){
+    drawingRainbow(allSquares);
+});
+
+
 
 squareNumberSelector.addEventListener('click', function(){
     squares = prompt("Squares Per Side: ");
