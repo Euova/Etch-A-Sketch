@@ -11,25 +11,6 @@ let allSquares = 0;
 let squares = slider.value;
 
 
-//BUGS
-//Sometimes when clicking and drawing its as if ur trying to drag smthing so it would give that symbol that you cant drag this item.
-
-for (let i = 0; i < allBtns.length; i++){
-    allBtns[i].addEventListener('click', function(e){
-        if (e.target == clearButton){
-            e.target.style.background = "#20262E"
-        }
-        else{
-        const currentColor = allBtns[i].style.background;
-        allBtns.forEach(button => {
-            button.style.background = "";
-        })
-        e.target.style.background = currentColor || "#913175";
-    }
-    })
-}
-
-
 function createGrid(squares){
     for (i = 0; i < squares * squares; i++){
     const grid_square = document.createElement("div");
@@ -38,6 +19,9 @@ function createGrid(squares){
     }
     sizeDisplay.textContent = `${squares} x ${squares}`;
     allSquares = document.querySelectorAll(".grid_square");
+    allSquares.forEach(gridbox => gridbox.addEventListener('dragstart', function(event){
+        event.preventDefault();
+    }));
     container.style.cssText = `grid-template-columns: repeat(${squares}, 
                                 1fr); grid-template-rows: repeat(${squares}, 1fr);`;
 }
@@ -117,6 +101,11 @@ clearButton.addEventListener('click', function(){
     clearDrawing(allSquares);
 });
 
+
+slider.addEventListener('input', function(){
+    sizeDisplay.textContent = `${slider.value} x ${slider.value}`;
+});
+
 slider.addEventListener('mouseup', function(){
     squares = slider.value
     resetGrid();
@@ -124,9 +113,21 @@ slider.addEventListener('mouseup', function(){
     drawingColor(allSquares);
 })
 
-slider.addEventListener('input', function(){
-    sizeDisplay.textContent = `${slider.value} x ${slider.value}`;
-});
+
+for (let i = 0; i < allBtns.length; i++){
+    allBtns[i].addEventListener('click', function(e){
+        if (e.target == clearButton){
+            e.target.style.background = "#20262E"
+        }
+        else{
+        const currentColor = allBtns[i].style.background;
+        allBtns.forEach(button => {
+            button.style.background = "";
+        })
+        e.target.style.background = currentColor || "#913175";
+    }
+    })
+}
 
 createGrid(squares);
 
