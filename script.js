@@ -1,11 +1,12 @@
 const container = document.querySelector(".grid_container");
-const squareNumberSelector = document.querySelector(".num_squares");
 const blackButton = document.querySelector(".drawing_black");
 const eraserButton = document.querySelector(".eraser");
 const rainbowButton = document.querySelector(".rainbow");
 const clearButton = document.querySelector(".clear");
+let sizeDisplay = document.querySelector(".size");
+let slider = document.querySelector(".slider");
 let allSquares = 0;
-let squares = 16;
+let squares = slider.value;
 
 function createGrid(squares){
     for (i = 0; i < squares * squares; i++){
@@ -13,6 +14,7 @@ function createGrid(squares){
     grid_square.classList.add('grid_square');
     container.appendChild(grid_square);
     }
+    sizeDisplay.textContent = `${squares} x ${squares}`;
     allSquares = document.querySelectorAll(".grid_square");
     container.style.cssText = `grid-template-columns: repeat(${squares}, 
                                 1fr); grid-template-rows: repeat(${squares}, 1fr);`;
@@ -73,6 +75,8 @@ function drawingRainbow(allSquares){
 function clearDrawing(allSquares){
     allSquares.forEach(box => box.style.background = "white");
 }
+
+
 blackButton.addEventListener('click', function(){
     drawingBlack(allSquares);
 });
@@ -88,16 +92,17 @@ rainbowButton.addEventListener('click', function(){
 clearButton.addEventListener('click', function(){
     clearDrawing(allSquares);
 });
-squareNumberSelector.addEventListener('click', function(){
-    squares = prompt("Squares Per Side: ");
-    if (squares > 100){
-        alert("Please enter a number less than 100");
-    }
-    else{   
+
+slider.addEventListener('mouseup', function(){
+    squares = slider.value
     resetGrid();
     createGrid(squares);
     drawingBlack(allSquares);
-    }
+})
+
+slider.addEventListener('input', function(){
+    sizeDisplay.textContent = `${slider.value} x ${slider.value}`;
 });
 
 createGrid(squares);
+
