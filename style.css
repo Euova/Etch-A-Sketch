@@ -6,10 +6,10 @@ body{
     height: 100vh;
     background-color: #20262E;
     font-family: Roboto, sans-serif;
-    
     flex-wrap: wrap;
     color: white;
 }
+
 .options{
     display: flex;
     flex-direction: column;
@@ -18,19 +18,21 @@ body{
     justify-content: center;
     
 }
+
 .title{
     font-size: 72px;
     margin-bottom: 100px;
     text-align: center;
     font-weight: bolder;
 }
+
 .grid_container{
     display: inline-grid;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
-    min-width: 960px;
-    min-height: 960px;
-    border:6px solid #CD5888;   
+    min-width: 720px;
+    min-height: 720px;
+    border: 6px solid #E9E8E8;   
     background-color: white;
 }
 
@@ -44,6 +46,11 @@ button{
     border-radius: 10px;
     font-size: larger;
     font-weight: bolder;
+}
+
+button:hover{
+    transform: scale(1.1);
+    transition: all 0.1s ease-in;
 }
 
 /* Making Color Picker Round */
@@ -63,18 +70,40 @@ input[type="color"]::-webkit-color-swatch {
     border:none;
 }
 
-
 .color_picker:hover, button:hover{
     cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.1s ease-in;
 }
+
+
 .size{
     margin: 10px;
     font-weight: bolder;
     font-size: larger;
 }
+
 .slider{
+    -webkit-appearance: none;
+    border-radius: 10px;
+    height: 16px;
     margin-top: 10px;
+    background: #D3D3D3;
 }
-.active{
-    background-color: #913175;
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #CD5888;
+    cursor: pointer;
+}
+
+.grid_square{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: crosshair;
 }

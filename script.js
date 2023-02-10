@@ -26,12 +26,14 @@ function createGrid(squares){
                                 1fr); grid-template-rows: repeat(${squares}, 1fr);`;
 }
 
+
 function resetGrid(){
     let allSquares = document.querySelectorAll(".grid_square");
     allSquares.forEach(element => {
         element.remove();
     });
 }
+
 
 function drawingColor(allSquares){
     let draw = function(e){
@@ -48,6 +50,26 @@ function drawingColor(allSquares){
     }));
 }
 
+
+function drawingRainbow(allSquares){
+    let rainbow = function(e){
+        let red = Math.floor(Math.random() * 256);
+        let blue = Math.floor(Math.random() * 256);
+        let green = Math.floor(Math.random() * 256);
+        e.target.style.background = `rgb(${red},${blue},${green})`;
+    };
+
+    allSquares.forEach(box => box.addEventListener('mousedown',function(e){
+        rainbow(e);
+        allSquares.forEach(box => box.addEventListener('mouseenter', rainbow));
+    }));
+
+    allSquares.forEach(box => box.addEventListener('mouseup', function(){
+        allSquares.forEach(box => box.removeEventListener('mouseenter', rainbow));
+    }));
+}
+
+
 function erasing(allSquares){
     let erase = function(e){
         e.target.style.background = "white";
@@ -63,22 +85,6 @@ function erasing(allSquares){
     }));
 }
 
-function drawingRainbow(allSquares){
-    let rainbow = function(e){
-        let red = Math.floor(Math.random() * 256);
-        let blue = Math.floor(Math.random() * 256);
-        let green = Math.floor(Math.random() * 256);
-        e.target.style.background = `rgb(${red},${blue},${green})`;
-    }
-
-    allSquares.forEach(box => box.addEventListener('mousedown',function(){
-        allSquares.forEach(box => box.addEventListener('mouseenter', rainbow));
-    }));
-
-    allSquares.forEach(box => box.addEventListener('mouseup', function(){
-        allSquares.forEach(box => box.removeEventListener('mouseenter', rainbow));
-    }));
-}
 
 function clearDrawing(allSquares){
     allSquares.forEach(box => box.style.background = "white");
@@ -124,10 +130,9 @@ for (let i = 0; i < allBtns.length; i++){
         allBtns.forEach(button => {
             button.style.background = "";
         })
-        e.target.style.background = currentColor || "#913175";
+        e.target.style.background = currentColor || "#CD5888";
     }
     })
 }
 
 createGrid(squares);
-
