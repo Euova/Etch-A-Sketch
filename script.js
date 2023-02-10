@@ -24,13 +24,33 @@ function resetGrid(){
 }
 
 function drawingBlack(allSquares){
-    allSquares.forEach(box => box.addEventListener('mouseover', function(e){
+    // allSquares.forEach(box => box.addEventListener('mouseover', function(e){
+    //     e.target.style.background = "black";
+    // }));
+    let draw = function(e){
         e.target.style.background = "black";
+    };
+
+    allSquares.forEach(box => box.addEventListener('mousedown', function(e){
+        allSquares.forEach(box => box.addEventListener('mouseenter', draw)); 
+    }));
+
+    allSquares.forEach(box => box.addEventListener('mouseup', function(e){
+        allSquares.forEach(box => box.removeEventListener('mouseenter', draw));
     }));
 }
+
 function erasing(allSquares){
-    allSquares.forEach(box => box.addEventListener('mouseover', function(e){
+    let erase = function(e){
         e.target.style.background = "white";
+    };
+
+    allSquares.forEach(box => box.addEventListener('mousedown', function(e){
+        allSquares.forEach(box => box.addEventListener('mouseenter', erase));
+    }));
+
+    allSquares.forEach(box => box.addEventListener('mouseup', function(e){
+        allSquares.forEach(box => box.removeEventListener('mouseenter', erase));
     }));
 }
 
