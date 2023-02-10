@@ -3,11 +3,32 @@ const colorButton = document.querySelector(".drawing_color");
 const eraserButton = document.querySelector(".eraser");
 const rainbowButton = document.querySelector(".rainbow");
 const clearButton = document.querySelector(".clear");
+const allBtns = document.querySelectorAll("button");
 let sizeDisplay = document.querySelector(".size");
 let slider = document.querySelector(".slider");
 let color = document.querySelector(".color_picker");
 let allSquares = 0;
 let squares = slider.value;
+
+
+//BUGS
+//Sometimes when clicking and drawing its as if ur trying to drag smthing so it would give that symbol that you cant drag this item.
+
+for (let i = 0; i < allBtns.length; i++){
+    allBtns[i].addEventListener('click', function(e){
+        if (e.target == clearButton){
+            e.target.style.background = "#20262E"
+        }
+        else{
+        const currentColor = allBtns[i].style.background;
+        allBtns.forEach(button => {
+            button.style.background = "";
+        })
+        e.target.style.background = currentColor || "#913175";
+    }
+    })
+}
+
 
 function createGrid(squares){
     for (i = 0; i < squares * squares; i++){
@@ -32,8 +53,9 @@ function drawingColor(allSquares){
     let draw = function(e){
         e.target.style.background = `${color.value}`;
     };
-
+    
     allSquares.forEach(box => box.addEventListener('mousedown', function(e){
+        draw(e);
         allSquares.forEach(box => box.addEventListener('mouseenter', draw)); 
     }));
 
@@ -48,6 +70,7 @@ function erasing(allSquares){
     };
 
     allSquares.forEach(box => box.addEventListener('mousedown', function(e){
+        erase(e);
         allSquares.forEach(box => box.addEventListener('mouseenter', erase));
     }));
 

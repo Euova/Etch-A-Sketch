@@ -1,9 +1,28 @@
 body{
     margin: 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     height: 100vh;
+    background-color: #20262E;
+    font-family: Roboto, sans-serif;
+    
+    flex-wrap: wrap;
+    color: white;
+}
+.options{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    
+}
+.title{
+    font-size: 72px;
+    margin-bottom: 100px;
+    text-align: center;
+    font-weight: bolder;
 }
 .grid_container{
     display: inline-grid;
@@ -11,14 +30,51 @@ body{
     grid-template-rows: repeat(16, 1fr);
     min-width: 960px;
     min-height: 960px;
-    border: 4px solid black;
+    border:6px solid #CD5888;   
+    background-color: white;
 }
 
 button{
     padding: 30px;
+    margin: 10px;
+    width: 50%;
+    color: white;
+    background-color: #20262E;
+    border: 2px solid #CD5888;
+    border-radius: 10px;
+    font-size: larger;
+    font-weight: bolder;
 }
+
+/* Making Color Picker Round */
 .color_picker{
-    width: 75px;
-    height: 75px;
-    border: none;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    border-radius: 100%;
+    background-color: #20262E;
+    border:none;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 100%;
+    border:none;
+}
+
+
+.color_picker:hover, button:hover{
+    cursor: pointer;
+}
+.size{
+    margin: 10px;
+    font-weight: bolder;
+    font-size: larger;
+}
+.slider{
+    margin-top: 10px;
+}
+.active{
+    background-color: #913175;
 }
