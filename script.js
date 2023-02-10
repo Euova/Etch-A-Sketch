@@ -28,7 +28,7 @@ function resetGrid(){
     });
 }
 
-function drawingBlack(allSquares){
+function drawingColor(allSquares){
     let draw = function(e){
         e.target.style.background = `${color.value}`;
     };
@@ -79,7 +79,7 @@ function clearDrawing(allSquares){
 
 
 colorButton.addEventListener('click', function(){
-    drawingBlack(allSquares);
+    drawingColor(allSquares);
 });
 
 eraserButton.addEventListener('click', function(){
@@ -98,7 +98,7 @@ slider.addEventListener('mouseup', function(){
     squares = slider.value
     resetGrid();
     createGrid(squares);
-    drawingBlack(allSquares);
+    drawingColor(allSquares);
 })
 
 slider.addEventListener('input', function(){
